@@ -5,6 +5,9 @@
  *  @tutorial https://multicaptchabot.wixsite.com/multicaptchabot/instruction
  *  @author AlexanderFSP <https://github.com/AlexanderFSP>
  *
+ *	Edited by Jerryfane <https://github.com/Jerryfane>
+ *	Look for "edit by Jerryfane" in the code
+ *
  *  [ Instruction ]:
  * 	â‘´ Download Mozilla Firefox, iMacros v8.9.7 and configure them according to README.md: https://github.com/AlexanderFSP/MultiCaptchaBot/blob/master/README.md
  *   	â‘µ Sign in for sites which you are going to use bot for
@@ -26,7 +29,9 @@
 const captchaPath      = 'C:\\';         // Text captchas download path (Don't forget to use double backslashes)
 const logPath 	       = 'C:\\log.txt';  // Full log filename (Don't forget to use double backslashes)
 
-const apiKey           = '*************************'; // Your ruCaptcha.com / 2Captcha.com API-KEY
+const apiKey           = '***********************'; // Your ruCaptcha.com / 2Captcha.com API-KEY
+//edit by JerryFane
+var LTtobuy = 2500  //Choose how many LT to buy if bonus is not activated
 
 // [ Block â„–2 ]: https://freebitco.in/
 const freeBITCOIN              = 'ON';  // [ON / OFF] - Use bot on https://freebitco.in/
@@ -267,6 +272,56 @@ function checkForInattention() {
 
     return false;
 }
+
+//edit by JerryFane
+function buyLT() {
+  var RPafter0 = Number(window.content.document.getElementsByClassName('user_reward_points')[0].innerHTML.replace(',', ''));
+  var RPgained = Number(window.content.document.getElementById('fp_reward_points_won').innerHTML);
+  var LTafter0 = Number(window.content.document.getElementById('user_lottery_tickets').innerHTML.replace(',', ''));
+  var LTgained = Number(window.content.document.getElementById('fp_lottery_tickets_won').innerHTML);
+  if (RPafter0-RPgained == accountRewardPoints || RPafter0 == accountRewardPoints) {
+    iimDisplay('Bonus not activated, buying lottery tickets...');
+    iimPlayCode('SET !ERRORIGNORE YES\nSET !TIMEOUT_STEP 10\nTAG POS=1 TYPE=A ATTR=TXT:LOTTERY\nTAG POS=1 TYPE=INPUT:TEXT ATTR=ID:lottery_tickets_purchase_count CONTENT='+LTtobuy+'\nTAG POS=1 TYPE=BUTTON ATTR=ID:purchase_lottery_tickets_button\nWAIT SECONDS = 1');
+    iimDisplay('Activating '+bonus_point_list[counter]+' REWARD POINTS / ROLL...');
+    log('freebitco.in', 'Activating \''+bonus_point_list[counter]+' REWARD POINTS / ROLL\'');
+    iimPlayCode('SET !ERRORIGNORE YES\nSET !TIMEOUT_STEP 10\nTAG POS=1 TYPE=BUTTON ATTR=ONCLICK:RedeemRPProduct(\'free_points_'+bonus_point_list[counter]+'\')\nWAIT SECONDS=1');
+    var LTafter1 = Number(window.content.document.getElementById('user_lottery_tickets').innerHTML.replace(',', ''));
+    var LTgained = Number(window.content.document.getElementById('fp_lottery_tickets_won').innerHTML);
+    if (LTafter1 == LTafter0) {
+      if (counter > 0) {
+        log('freebitco.in', 'Not bought \' Lottery Tickets...\'');
+        for (var i = counter; i > -1; i--) {
+          //activating lower RP bonus
+          iimDisplay('Activating '+bonus_point_list[i]+' REWARD POINTS / ROLL...');
+          log('freebitco.in', 'Activating \''+bonus_point_list[i]+' REWARD POINTS / ROLL\'');
+          iimPlayCode('SET !ERRORIGNORE YES\nSET !TIMEOUT_STEP 10\nTAG POS=1 TYPE=BUTTON ATTR=ONCLICK:RedeemRPProduct(\'free_points_'+bonus_point_list[i]+'\')\nWAIT SECONDS=1');
+          //activating lower Free BTC bonus
+          iimDisplay('Activating '+bonus_fp_text[i]+' FREE BTC / ROLL...');
+          log('freebitco.in', 'Activating \''+bonus_fp_text[i]+' FREE BTC / ROLL\'');
+          iimPlayCode('SET !ERRORIGNORE YES\nTAG POS=1 TYPE=A ATTR=TXT:REWARDS\nTAG POS=1 TYPE=DIV ATTR=TXT:FREE<SP>BTC<SP>BONUS\nTAG POS='+bonus_fp[i]+' TYPE=BUTTON ATTR=TXT:REDEEM\nWAIT SECONDS=1');
+          var RPafter1 = Number(window.content.document.getElementsByClassName('user_reward_points')[0].innerHTML.replace(',', ''));
+          if (RPafter1-RPgained == RPafter0 || RPafter1 == RPafter0) {
+            iimDisplay('Bonus not activated, activating lower bonus...');
+            log('freebitco.in', 'Not activated \' Bonus...\'');
+          }
+          else {
+            iimDisplay('Bonus '+bonus_point_list[i]+' activated');
+            log('freebitco.in', 'Activated \''+bonus_point_list[i]+' REWARD POINTS / ROLL\'');
+            break;
+          }
+
+        }
+      }
+    }
+    else {
+      log('freebitco.in', 'Bought \' Lottery Tickets\'');
+    }
+  }
+  else {
+    iimDisplay('Bonus activated');
+    log('freebitco.in', 'Activated \' Bonus\'');
+  }
+}
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 const n = '\n';
 var Winnings_freeBITCOIN = 0, Rewards_freeBITCOIN = 0, Tickets_freeBITCOIN = 0, Winnings_freeDOGECOIN = 0, Winnings_freeNEM = 0;
@@ -330,84 +385,54 @@ while (true) {
                         			}
 
 						if (freeBITCOIN_RewardPoints === 'ON') {
+
+							//Edit by JerryFane
+							var bonus_point_list = ['1', '10', '50', '100'];
+							//19 = 1000%    20 = 500%    21 = 100%    22 = 50%
+							var bonus_fp = ['22', '21', '20', '19'];
+							var bonus_fp_text = ['50%', '100%', '500%', '1000%'];
+
 							let accountRewardPoints = Number(window.content.document.getElementsByClassName('user_reward_points')[0].innerHTML.replace(',', ''));
 
 							if (!window.content.document.getElementById('bonus_container_free_points') && (accountRewardPoints >= 12)) {
 								if (accountRewardPoints < 120) {
-									iimDisplay('Activating 1 REWARD POINTS / ROLL...');
-									log('freebitco.in', 'Activating \'1 REWARD POINTS / ROLL\'');
-									iimPlayCode('SET !ERRORIGNORE YES\nSET !TIMEOUT_STEP 10\nTAG POS=1 TYPE=BUTTON ATTR=ONCLICK:RedeemRPProduct(\'free_points_1\')\nWAIT SECONDS=1');
+									var counter = 0
+									iimDisplay('Activating '+bonus_point_list[counter]+' REWARD POINTS / ROLL...');
+									log('freebitco.in', 'Activating \''+bonus_point_list[counter]+' REWARD POINTS / ROLL\'');
+									iimPlayCode('SET !ERRORIGNORE YES\nSET !TIMEOUT_STEP 10\nTAG POS=1 TYPE=BUTTON ATTR=ONCLICK:RedeemRPProduct(\'free_points_'+bonus_point_list[counter]+''\')\nWAIT SECONDS=1');
 
 									//Edit by JerryFane
-									var RPafter = Number(window.content.document.getElementsByClassName('user_reward_points')[0].innerHTML.replace(',', ''));
-									var RPgained = Number(window.content.document.getElementById('fp_reward_points_won').innerHTML)
-									if (RPafter-RPgained == accountRewardPoints || RPafter == accountRewardPoints) {
-									  iimDisplay('Bonus not activated, buying lottery tickets...');
-									  iimPlayCode('SET !ERRORIGNORE YES\nSET !TIMEOUT_STEP 10\nTAG POS=1 TYPE=A ATTR=TXT:LOTTERY\nTAG POS=1 TYPE=INPUT:TEXT ATTR=ID:lottery_tickets_purchase_count CONTENT=2500\nTAG POS=1 TYPE=BUTTON ATTR=ID:purchase_lottery_tickets_button\nWAIT SECONDS = 1');
-										log('Bonus not activated, buying 2500 lottery tickets...')
-									}
-									else {
-									  iimDisplay('Bonus activated');
-									  log('Bonus activated')
-									}
+									buyLT()
 
 									accountRewardPoints -= 12;
 
 								} else if ((accountRewardPoints >= 120) && (accountRewardPoints < 600)) {
-									iimDisplay('Activating 10 REWARD POINTS / ROLL...');
-									log('freebitco.in', 'Activating \'10 REWARD POINTS / ROLL\'');
-									iimPlayCode('SET !ERRORIGNORE YES\nSET !TIMEOUT_STEP 10\nTAG POS=1 TYPE=BUTTON ATTR=ONCLICK:RedeemRPProduct(\'free_points_10\')\nWAIT SECONDS=1');
+									var counter = 1
+									iimDisplay('Activating '+bonus_point_list[counter]+' REWARD POINTS / ROLL...');
+									log('freebitco.in', 'Activating \''+bonus_point_list[counter]+' REWARD POINTS / ROLL\'');
+									iimPlayCode('SET !ERRORIGNORE YES\nSET !TIMEOUT_STEP 10\nTAG POS=1 TYPE=BUTTON ATTR=ONCLICK:RedeemRPProduct(\'free_points_'+bonus_point_list[counter]+'\')\nWAIT SECONDS=1');
 
-									var RPafter = Number(window.content.document.getElementsByClassName('user_reward_points')[0].innerHTML.replace(',', ''));
-									var RPgained = Number(window.content.document.getElementById('fp_reward_points_won').innerHTML)
-									if (RPafter-RPgained == accountRewardPoints || RPafter == accountRewardPoints) {
-									  iimDisplay('Bonus not activated, buying lottery tickets...');
-									  iimPlayCode('SET !ERRORIGNORE YES\nSET !TIMEOUT_STEP 10\nTAG POS=1 TYPE=A ATTR=TXT:LOTTERY\nTAG POS=1 TYPE=INPUT:TEXT ATTR=ID:lottery_tickets_purchase_count CONTENT=2500\nTAG POS=1 TYPE=BUTTON ATTR=ID:purchase_lottery_tickets_button\nWAIT SECONDS = 1');
-										log('Bonus not activated, buying 2500 lottery tickets...')
-									}
-									else {
-									  iimDisplay('Bonus activated');
-									  log('Bonus activated')
-									}
-
+									//Edit by JerryFane
+									buyLT()
 
 									accountRewardPoints -= 120;
 								} else if ((accountRewardPoints >= 600) && (accountRewardPoints < 1200)) {
+									var counter = 2
 									iimDisplay('Activating 50 REWARD POINTS / ROLL...');
 									log('freebitco.in', 'Activating \'50 REWARD POINTS / ROLL\'');
 									iimPlayCode('SET !ERRORIGNORE YES\nSET !TIMEOUT_STEP 10\nTAG POS=1 TYPE=BUTTON ATTR=ONCLICK:RedeemRPProduct(\'free_points_50\')\nWAIT SECONDS=1');
 
-									var RPafter = Number(window.content.document.getElementsByClassName('user_reward_points')[0].innerHTML.replace(',', ''));
-									var RPgained = Number(window.content.document.getElementById('fp_reward_points_won').innerHTML)
-									if (RPafter-RPgained == accountRewardPoints || RPafter == accountRewardPoints) {
-									  iimDisplay('Bonus not activated, buying lottery tickets...');
-									  iimPlayCode('SET !ERRORIGNORE YES\nSET !TIMEOUT_STEP 10\nTAG POS=1 TYPE=A ATTR=TXT:LOTTERY\nTAG POS=1 TYPE=INPUT:TEXT ATTR=ID:lottery_tickets_purchase_count CONTENT=2500\nTAG POS=1 TYPE=BUTTON ATTR=ID:purchase_lottery_tickets_button\nWAIT SECONDS = 1');
-									  log('Bonus not activated, buying 2500 lottery tickets...')
-
-									}
-									else {
-									  iimDisplay('Bonus activated');
-									  log('Bonus activated')
-									}
-
+									//Edit by JerryFane
+									buyLT()
 									accountRewardPoints -= 600;
 								} else {
+									var counter = 3
 									iimDisplay('Activating 100 REWARD POINTS / ROLL...');
 									log('freebitco.in', 'Activating \'100 REWARD POINTS / ROLL\'');
 									iimPlayCode('SET !ERRORIGNORE YES\nSET !TIMEOUT_STEP 10\nTAG POS=1 TYPE=BUTTON ATTR=ONCLICK:RedeemRPProduct(\'free_points_100\')\nWAIT SECONDS=1');
 
-									var RPafter = Number(window.content.document.getElementsByClassName('user_reward_points')[0].innerHTML.replace(',', ''));
-									var RPgained = Number(window.content.document.getElementById('fp_reward_points_won').innerHTML)
-									if (RPafter-RPgained == accountRewardPoints || RPafter == accountRewardPoints) {
-									  iimDisplay('Bonus not activated, buying lottery tickets...');
-									  iimPlayCode('SET !ERRORIGNORE YES\nSET !TIMEOUT_STEP 10\nTAG POS=1 TYPE=A ATTR=TXT:LOTTERY\nTAG POS=1 TYPE=INPUT:TEXT ATTR=ID:lottery_tickets_purchase_count CONTENT=2500\nTAG POS=1 TYPE=BUTTON ATTR=ID:purchase_lottery_tickets_button\nWAIT SECONDS = 1');
-									  log('Bonus not activated, buying 2500 lottery tickets...')
-
-									}
-									else {
-									  iimDisplay('Bonus activated');
-									  log('Bonus activated')
-									}
+									//Edit by JerryFane
+									buyLT()
 
 									accountRewardPoints -= 1200;
 								}
