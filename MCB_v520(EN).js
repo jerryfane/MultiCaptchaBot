@@ -1,4 +1,4 @@
-/**
+﻿/**
  *  @description freebitco.in / freedoge.co.in / freenem.com [ MultiCaptchaBot]
  *  @since Sat May 19 2018 23:05:19 GMT+0300 (MSK)
  *  @version 5.2.0 (EN)
@@ -6,38 +6,38 @@
  *  @author AlexanderFSP <https://github.com/AlexanderFSP>
  *
  *  [ Instruction ]:
- * 	⑴ Download Mozilla Firefox, iMacros v8.9.7 and configure them according to README.md: https://github.com/AlexanderFSP/MultiCaptchaBot/blob/master/README.md
- *   	⑵ Sign in for sites which you are going to use bot for
- *   	⑶ Register and add funds to your captcha recognition service account using any payment method you prefer
- *   	⑷ Attention, don't forget to do the following actions:
- *      	▻ Create folder C:\MultiCaptcha_bot
- *       	▻ Place your API KEY from ruCaptcha.com / 2Captcha.com instead of asterisks (Line №29)
- *       	▻ Activate faucets you need and additional functions for them (Lines №31 - 44)
- * 		▻ In order to use freenem.com you will need to install any extension to block ads. I suggest installing Adblock Plus
+ * 	â‘´ Download Mozilla Firefox, iMacros v8.9.7 and configure them according to README.md: https://github.com/AlexanderFSP/MultiCaptchaBot/blob/master/README.md
+ *   	â‘µ Sign in for sites which you are going to use bot for
+ *   	â‘¶ Register and add funds to your captcha recognition service account using any payment method you prefer
+ *   	â‘· Attention, don't forget to do the following actions:
+ *      	â–» Create folder C:\MultiCaptcha_bot
+ *       	â–» Place your API KEY from ruCaptcha.com / 2Captcha.com instead of asterisks (Line â„–29)
+ *       	â–» Activate faucets you need and additional functions for them (Lines â„–31 - 44)
+ * 		â–» In order to use freenem.com you will need to install any extension to block ads. I suggest installing Adblock Plus
  * 		Download link: https://adblockplus.org/en/
- * 
- *  [ Сontact with me ]: 
- *  	⑴ E-mail: multicaptchabot@ya.ru
- *      ⑵ Website: https://multicaptchabot.wixsite.com/multicaptchabot
- *	⑶ ruCaptcha.com: https://rucaptcha.com/software/view/freebitcoin-multicaptcha-bot
+ *
+ *  [ Ð¡ontact with me ]:
+ *  	â‘´ E-mail: multicaptchabot@ya.ru
+ *      â‘µ Website: https://multicaptchabot.wixsite.com/multicaptchabot
+ *	â‘¶ ruCaptcha.com: https://rucaptcha.com/software/view/freebitcoin-multicaptcha-bot
  */
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// [ Block №1 ]: User settings
-const captchaPath      = 'C:\\MultiCaptcha_bot\\';         // Text captchas download path (Don't forget to use double backslashes)
-const logPath 	       = 'C:\\MultiCaptcha_bot\\log.txt';  // Full log filename (Don't forget to use double backslashes)
+// [ Block â„–1 ]: User settings
+const captchaPath      = 'C:\\';         // Text captchas download path (Don't forget to use double backslashes)
+const logPath 	       = 'C:\\log.txt';  // Full log filename (Don't forget to use double backslashes)
 
-const apiKey           = '******************************'; // Your ruCaptcha.com / 2Captcha.com API-KEY
+const apiKey           = '*************************'; // Your ruCaptcha.com / 2Captcha.com API-KEY
 
-// [ Block №2 ]: https://freebitco.in/
-const freeBITCOIN              = 'OFF';  // [ON / OFF] - Use bot on https://freebitco.in/
-const freeBITCOIN_RewardPoints = 'OFF';  // [ON / OFF] - Auto-apply Reward Points on https://freebitco.in/ (Full algorithm can be found here: https://github.com/AlexanderFSP/MultiCaptchaBot)
-const freeBITCOIN_RandomTimer  = 'OFF';  // [ON / OFF] - Random delay for from 30 seconds to 2 minutes before next roll on https://freebitco.in/
+// [ Block â„–2 ]: https://freebitco.in/
+const freeBITCOIN              = 'ON';  // [ON / OFF] - Use bot on https://freebitco.in/
+const freeBITCOIN_RewardPoints = 'ON';  // [ON / OFF] - Auto-apply Reward Points on https://freebitco.in/ (Full algorithm can be found here: https://github.com/AlexanderFSP/MultiCaptchaBot)
+const freeBITCOIN_RandomTimer  = 'ON';  // [ON / OFF] - Random delay for from 30 seconds to 2 minutes before next roll on https://freebitco.in/
 
-// [ Block №3 ]: https://freedoge.co.in/
+// [ Block â„–3 ]: https://freedoge.co.in/
 const freeDOGECOIN             = 'OFF';  // [ON / OFF] - Use bot on https://freedoge.co.in/
 const freeDOGECOIN_RandomTimer = 'OFF';  // [ON / OFF] - Random delay for from 30 seconds to 2 minutes before next roll on https://freedoge.co.in/
 
-// [ Block №4 ]: https://freenem.com/
+// [ Block â„–4 ]: https://freenem.com/
 const freeNEM	               = 'OFF';            // [ON / OFF] - Use bot on https://freenem.com/
 const freeNEM_Login            = '*************';  // Login (Required, because session is valid for 3 hours only)
 const freeNEM_Password         = '*************';  // Password (For the same reason)
@@ -251,17 +251,17 @@ function notificationsBadCaptcha(pageurl) {
  */
 function checkForInattention() {
     if ((freeBITCOIN === 'OFF') && (freeDOGECOIN === 'OFF') && (freeNEM === 'OFF')) {
-        alert('Before starting the bot in the text file \"MCB_v510(EN).js\" you must select at least one project to be used. Be careful!\n\nLine №32: const freeBITCOIN      = \'OFF\';\nLine №37: const freeDOGECOIN = \'OFF\';\nLine №41: const freeNEM             = \'OFF\';');
+        alert('Before starting the bot in the text file \"MCB_v510(EN).js\" you must select at least one project to be used. Be careful!\n\nLine â„–32: const freeBITCOIN      = \'OFF\';\nLine â„–37: const freeDOGECOIN = \'OFF\';\nLine â„–41: const freeNEM             = \'OFF\';');
         return true;
     }
 
     if (apiKey === '******************************') {
-        alert('Before starting the bot in the text file \"MCB_v510(EN).js\" you must place your API KEY from ruCaptcha.com / 2Captcha.com instead of asterisks. Be careful!\n\nLine №29: const apiKey = \'******************************\';');
+        alert('Before starting the bot in the text file \"MCB_v510(EN).js\" you must place your API KEY from ruCaptcha.com / 2Captcha.com instead of asterisks. Be careful!\n\nLine â„–29: const apiKey = \'******************************\';');
         return true;
     }
-    
+
     if ((freeNEM === 'ON') && ((freeNEM_Login === '*************') || (freeNEM_Password === '*************'))) {
-	alert('You activated the bot on https://freenem.com/, but forgot to enter your login and password on this project. Be careful!\n\nLine №42: const freeNEM_Login        = \'*************\';\n\nLine №43: const freeNEM_Password = \'*************\';');
+	alert('You activated the bot on https://freenem.com/, but forgot to enter your login and password on this project. Be careful!\n\nLine â„–42: const freeNEM_Login        = \'*************\';\n\nLine â„–43: const freeNEM_Password = \'*************\';');
 	return true;
     }
 
@@ -322,7 +322,7 @@ while (true) {
 							}
 							break;
 					   	} while (!window.content.document.getElementById('free_play_form_button'));
-	
+
 						if (/^(\d+)m:(\d+)s/.exec(window.content.document.getElementsByTagName('title')[0].innerText)) {
 							iimDisplay('There was an exception...');
                             				log('freebitco.in', 'There was an exception...');
@@ -331,36 +331,93 @@ while (true) {
 
 						if (freeBITCOIN_RewardPoints === 'ON') {
 							let accountRewardPoints = Number(window.content.document.getElementsByClassName('user_reward_points')[0].innerHTML.replace(',', ''));
-							
+
 							if (!window.content.document.getElementById('bonus_container_free_points') && (accountRewardPoints >= 12)) {
 								if (accountRewardPoints < 120) {
 									iimDisplay('Activating 1 REWARD POINTS / ROLL...');
 									log('freebitco.in', 'Activating \'1 REWARD POINTS / ROLL\'');
 									iimPlayCode('SET !ERRORIGNORE YES\nSET !TIMEOUT_STEP 10\nTAG POS=1 TYPE=BUTTON ATTR=ONCLICK:RedeemRPProduct(\'free_points_1\')\nWAIT SECONDS=1');
+
+									//Edit by JerryFane
+									var RPafter = Number(window.content.document.getElementsByClassName('user_reward_points')[0].innerHTML.replace(',', ''));
+									var RPgained = Number(window.content.document.getElementById('fp_reward_points_won').innerHTML)
+									if (RPafter-RPgained == accountRewardPoints || RPafter == accountRewardPoints) {
+									  iimDisplay('Bonus not activated, buying lottery tickets...');
+									  iimPlayCode('SET !ERRORIGNORE YES\nSET !TIMEOUT_STEP 10\nTAG POS=1 TYPE=A ATTR=TXT:LOTTERY\nTAG POS=1 TYPE=INPUT:TEXT ATTR=ID:lottery_tickets_purchase_count CONTENT=2500\nTAG POS=1 TYPE=BUTTON ATTR=ID:purchase_lottery_tickets_button\nWAIT SECONDS = 1');
+										log('Bonus not activated, buying 2500 lottery tickets...')
+									}
+									else {
+									  iimDisplay('Bonus activated');
+									  log('Bonus activated')
+									}
+
 									accountRewardPoints -= 12;
+
 								} else if ((accountRewardPoints >= 120) && (accountRewardPoints < 600)) {
 									iimDisplay('Activating 10 REWARD POINTS / ROLL...');
 									log('freebitco.in', 'Activating \'10 REWARD POINTS / ROLL\'');
 									iimPlayCode('SET !ERRORIGNORE YES\nSET !TIMEOUT_STEP 10\nTAG POS=1 TYPE=BUTTON ATTR=ONCLICK:RedeemRPProduct(\'free_points_10\')\nWAIT SECONDS=1');
+
+									var RPafter = Number(window.content.document.getElementsByClassName('user_reward_points')[0].innerHTML.replace(',', ''));
+									var RPgained = Number(window.content.document.getElementById('fp_reward_points_won').innerHTML)
+									if (RPafter-RPgained == accountRewardPoints || RPafter == accountRewardPoints) {
+									  iimDisplay('Bonus not activated, buying lottery tickets...');
+									  iimPlayCode('SET !ERRORIGNORE YES\nSET !TIMEOUT_STEP 10\nTAG POS=1 TYPE=A ATTR=TXT:LOTTERY\nTAG POS=1 TYPE=INPUT:TEXT ATTR=ID:lottery_tickets_purchase_count CONTENT=2500\nTAG POS=1 TYPE=BUTTON ATTR=ID:purchase_lottery_tickets_button\nWAIT SECONDS = 1');
+										log('Bonus not activated, buying 2500 lottery tickets...')
+									}
+									else {
+									  iimDisplay('Bonus activated');
+									  log('Bonus activated')
+									}
+
+
 									accountRewardPoints -= 120;
 								} else if ((accountRewardPoints >= 600) && (accountRewardPoints < 1200)) {
 									iimDisplay('Activating 50 REWARD POINTS / ROLL...');
 									log('freebitco.in', 'Activating \'50 REWARD POINTS / ROLL\'');
 									iimPlayCode('SET !ERRORIGNORE YES\nSET !TIMEOUT_STEP 10\nTAG POS=1 TYPE=BUTTON ATTR=ONCLICK:RedeemRPProduct(\'free_points_50\')\nWAIT SECONDS=1');
+
+									var RPafter = Number(window.content.document.getElementsByClassName('user_reward_points')[0].innerHTML.replace(',', ''));
+									var RPgained = Number(window.content.document.getElementById('fp_reward_points_won').innerHTML)
+									if (RPafter-RPgained == accountRewardPoints || RPafter == accountRewardPoints) {
+									  iimDisplay('Bonus not activated, buying lottery tickets...');
+									  iimPlayCode('SET !ERRORIGNORE YES\nSET !TIMEOUT_STEP 10\nTAG POS=1 TYPE=A ATTR=TXT:LOTTERY\nTAG POS=1 TYPE=INPUT:TEXT ATTR=ID:lottery_tickets_purchase_count CONTENT=2500\nTAG POS=1 TYPE=BUTTON ATTR=ID:purchase_lottery_tickets_button\nWAIT SECONDS = 1');
+									  log('Bonus not activated, buying 2500 lottery tickets...')
+
+									}
+									else {
+									  iimDisplay('Bonus activated');
+									  log('Bonus activated')
+									}
+
 									accountRewardPoints -= 600;
 								} else {
 									iimDisplay('Activating 100 REWARD POINTS / ROLL...');
 									log('freebitco.in', 'Activating \'100 REWARD POINTS / ROLL\'');
 									iimPlayCode('SET !ERRORIGNORE YES\nSET !TIMEOUT_STEP 10\nTAG POS=1 TYPE=BUTTON ATTR=ONCLICK:RedeemRPProduct(\'free_points_100\')\nWAIT SECONDS=1');
+
+									var RPafter = Number(window.content.document.getElementsByClassName('user_reward_points')[0].innerHTML.replace(',', ''));
+									var RPgained = Number(window.content.document.getElementById('fp_reward_points_won').innerHTML)
+									if (RPafter-RPgained == accountRewardPoints || RPafter == accountRewardPoints) {
+									  iimDisplay('Bonus not activated, buying lottery tickets...');
+									  iimPlayCode('SET !ERRORIGNORE YES\nSET !TIMEOUT_STEP 10\nTAG POS=1 TYPE=A ATTR=TXT:LOTTERY\nTAG POS=1 TYPE=INPUT:TEXT ATTR=ID:lottery_tickets_purchase_count CONTENT=2500\nTAG POS=1 TYPE=BUTTON ATTR=ID:purchase_lottery_tickets_button\nWAIT SECONDS = 1');
+									  log('Bonus not activated, buying 2500 lottery tickets...')
+
+									}
+									else {
+									  iimDisplay('Bonus activated');
+									  log('Bonus activated')
+									}
+
 									accountRewardPoints -= 1200;
 								}
 							}
-	
-							if (!window.content.document.getElementById('bonus_container_fp_bonus') && (accountRewardPoints >= 2800)) {
-								if (accountRewardPoints < 4400) {
-									iimDisplay('Activating 500% FREE BTC BONUS...');
-									log('freebitco.in', 'Activating \'500% FREE BTC BONUS\'');
-									iimPlayCode('SET !ERRORIGNORE YES\nSET !TIMEOUT_STEP 10\nTAG POS=1 TYPE=BUTTON ATTR=ONCLICK:RedeemRPProduct(\'fp_bonus_500\')\nWAIT SECONDS=1');
+
+							if (!window.content.document.getElementById('bonus_container_fp_bonus') && (accountRewardPoints >= 4400)) {
+								if (accountRewardPoints < 4401) {
+									iimDisplay('Activating 1000% FREE BTC BONUS...');
+									log('freebitco.in', 'Activating \'1000% FREE BTC BONUS\'');
+									iimPlayCode('SET !ERRORIGNORE YES\nSET !TIMEOUT_STEP 10\nTAG POS=1 TYPE=BUTTON ATTR=ONCLICK:RedeemRPProduct(\'fp_bonus_1000\')\nWAIT SECONDS=1');
 								} else {
 									iimDisplay('Activating 1000% FREE BTC BONUS...');
 									log('freebitco.in', 'Activating \'1000% FREE BTC BONUS\'');
@@ -383,7 +440,7 @@ while (true) {
 							log('freebitco.in', '\'SWITCH CAPTCHA BUTTON\' is detected. Choosing reCAPTCHA v2...');
                             iimPlayCode('SET !ERRORIGNORE YES\nSET !TIMEOUT_STEP 10\nTAG POS=1 TYPE=DIV ATTR=TXT:SWITCH<SP>CAPTCHA\nWAIT SECONDS=2.5');
 						}
-						
+
 						if (window.content.document.getElementById('g-recaptcha-response')) {
 							iimDisplay('reCAPTCHA v2 is detected. Solving...');
 							log('freebitco.in', 'reCAPTCHA v2 is detected. Solving...');
@@ -411,13 +468,13 @@ while (true) {
 						} else if (window.content.document.getElementsByClassName('captchasnet_captcha_content').length) {
 							iimDisplay('Captchas.net / Freebitco.in custom captcha is detected. Solving...');
 							log('freebitco.in', 'Captchas.net is detected. Solving...');
-							
+
 							let captchasNet = window.content.document.getElementsByClassName('captchasnet_captcha_content');
 							for (let i = 1; i <= captchasNet.length; i++) {
 								let regsense = (i == 1) ? 'NO' : 'YES';
 								let captchaName = makeUniqueName();
 								iimPlayCode('SET !ERRORIGNORE YES\nSET !TIMEOUT_STEP 10\nONDOWNLOAD FOLDER=' + captchaPath + ' FILE=' + captchaName + ' WAIT=YES\nTAG POS=' + i + ' TYPE=DIV ATTR=CLASS:captchasnet_captcha_content CONTENT=EVENT:SAVE_ELEMENT_SCREENSHOT');
-								
+
 								answer = solveTextCaptcha_ruCaptcha('freebitco.in', captchaName, 6, 6, regsense);
 								if (!answer['status']) {
 									if (solvingCaptchaCycles == 5) {
@@ -446,7 +503,7 @@ while (true) {
 								+n+ 'WAIT SECONDS=10'
 								+n+ 'ONDOWNLOAD FOLDER=' + captchaPath + ' FILE=' + captchaName + ' WAIT=YES'
 								+n+ 'TAG POS=1 TYPE=DIV ATTR=ID:adcopy-puzzle-image CONTENT=EVENT:SAVE_ELEMENT_SCREENSHOT');
-							
+
 							answer = solveTextCaptcha_ruCaptcha('freebitco.in', captchaName, 0, 0, 'NO');
 							if (!answer['status']) {
 								if (solvingCaptchaCycles == 5) {
@@ -472,6 +529,9 @@ while (true) {
 						if (Number(window.content.document.getElementById('winnings').innerHTML) > 0) {
 							iimDisplay('Successfully claimed!');
 							log('freebitco.in', 'Successfully claimed! Collected: ' + Number(window.content.document.getElementById('winnings').innerHTML).toFixed(8) + ' BTC; ' + Number(window.content.document.getElementById('fp_reward_points_won').innerHTML) + ' Reward Points; ' + Number(window.content.document.getElementById('fp_lottery_tickets_won').innerHTML) + ' Lottery Tickets');
+							log(Number(window.content.document.getElementById('balance').innerHTML.replace(',', '')) + ' BTC;');
+							log(Number(window.content.document.getElementsByClassName('user_reward_points')[0].innerHTML.replace(',', '')) + ' Rewards Points');
+							log(Number(window.content.document.getElementById('user_lottery_tickets').innerHTML.replace(',', '')) + ' Lottery Tickets');
 							Winnings_freeBITCOIN += Number(window.content.document.getElementById('winnings').innerHTML);
 							Rewards_freeBITCOIN  += Number(window.content.document.getElementById('fp_reward_points_won').innerHTML);
 							Tickets_freeBITCOIN  += Number(window.content.document.getElementById('fp_lottery_tickets_won').innerHTML);
@@ -489,7 +549,7 @@ while (true) {
 								iimDisplay('Captcha was solved incorrectly. Sending a report and trying to solve captcha again...');
 								log('freebitco.in', 'Captcha was solved incorrectly. Sending a report and trying to solve captcha again...');
 								reportCaptcha(answer['server'], answer['taskId']);
-								
+
 								if (solvingCaptchaCycles == 5) {
 									notificationsBadCaptcha('freebitco.in');
 									break;
@@ -527,7 +587,7 @@ while (true) {
                     			let timer = Number(/^(\d+)m:(\d+)s/.exec(window.content.document.getElementsByTagName('title')[0].innerText)[1]) * 60 + Number(/^(\d+)m:(\d+)s/.exec(window.content.document.getElementsByTagName('title')[0].innerText)[2]);
                     			timeTillNextRoll('freedoge.co.in', freeDOGECOIN_RandomTimer, timer);
                 		}
-                
+
                 		let solvingCaptchaCycles = 1, answer = null;
                 		while (solvingCaptchaCycles <= 5) {
 					do {
@@ -553,20 +613,20 @@ while (true) {
                         			log('freedoge.co.in', 'There was an exception...');
                         			break;
 					}
-					
+
 					if (window.content.document.getElementById('free_play_captcha_types').value === 'solvemedia') {
 						iimDisplay('Selecting reCAPTCHA v2...');
 						log('freedoge.co.in', 'Selecting reCAPTCHA v2...');
 						iimPlayCode('SET !ERRORIGNORE YES\nSET !TIMEOUT_STEP 10\nTAG POS=1 TYPE=SELECT ATTR=ID:free_play_captcha_types CONTENT=%recaptcha_v2\nWAIT SECONDS=2');
 					}
-	
+
 					if (window.content.document.getElementsByClassName('cc_banner cc_container cc_container--open').length)
 						iimPlayCode('SET !ERRORIGNORE YES\nSET !TIMEOUT_STEP 1\nTAG POS=1 TYPE=A ATTR=TXT:Got<SP>it!');
 
                     			iimDisplay('reCAPTCHA v2 is detected. Solving...');
 					log('freedoge.co.in', 'reCAPTCHA v2 is detected. Solving...');
                    			window.scrollBy(0, 20000);
-                        
+
 					window.content.document.getElementById('g-recaptcha-response').style.display = '';
 					iimPlayCode('SET !ERRORIGNORE YES'
 						+n+ 'SET !TIMEOUT_STEP 10'
@@ -611,7 +671,7 @@ while (true) {
 							iimDisplay('Captcha was solved incorrectly. Sending a report and trying to solve captcha again...');
 							log('freedoge.co.in', 'Captcha was solved incorrectly. Sending a report and trying to solve captcha again...');
 							reportCaptcha(answer['server'], answer['taskId']);
-							
+
 							if (solvingCaptchaCycles == 5) {
 								notificationsBadCaptcha('freedoge.co.in');
 								break;
@@ -647,7 +707,7 @@ while (true) {
 								+n+ 'TAG POS=1 TYPE=INPUT:PASSWORD ATTR=NAME:password CONTENT=' + freeNEM_Password
 								+n+ 'TAG POS=1 TYPE=BUTTON ATTR=TXT:LOGIN!'
 								+n+ 'WAIT SECONDS=8');
-							
+
 							if (!window.content.document.getElementsByClassName('main-button-2 roll-button').length) {
                                 				iimDisplay('Invisible reCAPTCHA v2 is detected. Solving...');
                                 				log('freenem.com', 'Invisible reCAPTCHA v2 is detected. Solving...');
@@ -673,7 +733,7 @@ while (true) {
 									iimDisplay('Captcha was solved incorrectly. Sending a report and trying to solve captcha again...');
 									log('freenem.com', 'Captcha was solved incorrectly. Sending a report and trying to solve captcha again...');
 									reportCaptcha(answer['server'], answer['taskId']);
-										
+
 									if (authorizationCycles == 5) {
 										notificationsBadCaptcha('freenem.com');
 										break freeNemBody;
@@ -705,7 +765,7 @@ while (true) {
 							+n+ 'TAB CLOSE'
 							+n+ 'URL GOTO=https://freenem.com/free'
                                 			+n+ 'WAIT SECONDS=8');
-                                
+
                         			timer = Number(window.content.document.getElementsByClassName('digits')[0].innerHTML * 60) + Number(window.content.document.getElementsByClassName('digits')[1].innerHTML);
                         			if (timer > 0) {
 							iimDisplay('There was an exception...');
@@ -749,7 +809,7 @@ while (true) {
 								+n+ 'TAG POS=1 TYPE=TEXTAREA FORM=ID:* ATTR=ID:g-recaptcha-response CONTENT=\"' + answer['hash'] + '\"'
 								+n+ 'ONDIALOG POS=1 BUTTON=OK CONTENT='
 								+n+ 'WAIT SECONDS=8');
-								
+
 							winningDuringLastSession = Number(window.content.document.getElementsByClassName('result')[0].innerHTML.split(' ')[3]);
 							if (!isNaN(winningDuringLastSession) || (winningDuringLastSession > 0)) {
 								iimDisplay('Successfully claimed!');
