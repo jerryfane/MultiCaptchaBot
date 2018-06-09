@@ -275,6 +275,7 @@ function checkForInattention() {
 
 //edit by JerryFane
 function buyLT() {
+  let accountRewardPoints = Number(window.content.document.getElementsByClassName('user_reward_points')[0].innerHTML.replace(',', ''));
   var RPafter0 = Number(window.content.document.getElementsByClassName('user_reward_points')[0].innerHTML.replace(',', ''));
   var RPgained = Number(window.content.document.getElementById('fp_reward_points_won').innerHTML);
   var LTafter0 = Number(window.content.document.getElementById('user_lottery_tickets').innerHTML.replace(',', ''));
